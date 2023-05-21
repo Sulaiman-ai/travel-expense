@@ -1,0 +1,18 @@
+.button_container {
+    background-color: darkgrey;
+    border: solid;
+    width: fit-content;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    padding: 1em;
+    margin: 1em;
+}
+
+.button_title {
+    font-weight: 600;
+}
+
+.button_budget {
+    font-weight: 600;
+    color: aqua;
+}
