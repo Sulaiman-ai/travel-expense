@@ -21,6 +21,16 @@ async function addCategory (trip_id, title, data) {
     };
 
     // return {result, error}
+};
+
+async function addTrip(data) {
+    try {
+        await addDoc(collection(db, 'journey'), data);
+        console.log('trip added');
+    } catch (e) {
+        let error = e;
+        console.log('failed to add trip');
+    }
 }
 
-export {addCategory}
+export {addCategory, addTrip}
