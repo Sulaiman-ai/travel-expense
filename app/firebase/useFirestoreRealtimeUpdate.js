@@ -3,11 +3,11 @@ import firebase_app from "./config";
 import { getFirestore, doc, getDoc, collection, collectionGroup, getDocs, onSnapshot } from "firebase/firestore";
 
 const db = getFirestore(firebase_app);
-const useFirestoreRealtimeUpdate = (collection) => {
+const useFirestoreRealtimeUpdate = (collectionRef) => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        const snap = onSnapshot(collectionGroup(db, collection), (snapshot)=>{
+        const snap = onSnapshot(collectionRef, (snapshot)=>{
             console.log('Database updated')        
             console.log(snapshot.docs);
             setData(snapshot.docs);
