@@ -17,7 +17,7 @@ async function addCategory (trip_id, title, data) {
         // result = await setDoc(doc(db, "spending-categories", title), data)
     } catch (e) {
         error = e;
-        console.log('failed to add data');
+        console.log('failed to add data', e);
     };
 
     // return {result, error}

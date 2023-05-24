@@ -9,7 +9,6 @@ import { getJourneyCollectionRef } from './firebase/getFirestoreRef';
 // import styles from './page.module.css'
 
 export default function Home() {
-  // const [trips, setTrips] = useState();
   const [showForm, setShowForm] = useState(false);
 
   const trips = useFirestoreRealtimeUpdate(getJourneyCollectionRef());

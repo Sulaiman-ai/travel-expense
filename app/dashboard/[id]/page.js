@@ -14,7 +14,6 @@ export default function DashBoard({params}){
 
     const [budget, setBudget] = useState();
     const [destination, setDestination] = useState();
-    // const [categoryDocs, setCategoryDocs] = useState();
     const [addingCategory, setAddingCategory] = useState(false);
     const [newCategory, setNewCategory] = useState({title:'new', data:{budget:'100'}});
     
@@ -22,31 +21,15 @@ export default function DashBoard({params}){
 
     useEffect(()=>{
         getDocument('journey', params.id)
-        .then(res=> {
-            // console.log(res.result.collection('spending-categories'));
+        .then(res => {
             let data = res.result.data();
-            // console.log(data);
-            // console.log(data.result.data());
             setBudget(data.budget);
             setDestination(data.location);
-
         });
-
-        // getDocument('spending-categories', )
-
-        // getDocumentsFromCollection()
-        // .then(res => {
-        //     setCategoryDocs(res.docs.docs)
-        //     // console.log("Got the documents!", res.docs);
-        //     // res.docs.forEach((doc) => {
-        //     //     console.log(doc.data());
-        //     // });
-        //     // console.log(docs);
-        // });
     }, []);
 
-    const handleEdit = async (event) => {
-        
+    const handleEdit = async (category, budget) => {
+        addCategory(params.id, category, {budget})
     }
     
     const handleAddCategory = async (event) => {
@@ -61,7 +44,7 @@ export default function DashBoard({params}){
             <div>Budget: {budget}</div><button>Edit</button><input></input>
             <div>Destination: {destination}</div><button>Edit</button>
             {categoryDocs ? categoryDocs.map((doc, index)=> 
-                <BudgetBreakdownNavButton key={`bbnb${index}`} category={doc.id} budget={doc.data().budget}/>
+                <BudgetBreakdownNavButton key={`bbnb${index}`} category={doc.id} budget={doc.data().budget} handleEdit = {handleEdit}/>
             ) : console.log(categoryDocs)}
             {addingCategory ? <>
                 <input onChange={(e)=> setNewCategory({...newCategory, title:e.target.value})} placeholder='Category'></input>
