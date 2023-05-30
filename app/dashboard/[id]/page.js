@@ -32,7 +32,7 @@ export default function DashBoard({params}){
     }, []);
 
     useEffect(() => {
-        if(tripDoc){
+        if(tripDoc && categoryDocs){
         setRemainingBudget(parseFloat(tripDoc.data().budget) - categoryDocs.map(doc => doc.data().budget).reduce((a,b)=>{
             console.log('a', a, 'b', b);
             return parseFloat(a)+parseFloat(b)}, 0));
