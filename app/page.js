@@ -11,12 +11,12 @@ import { getJourneyCollectionRef } from './firebase/getFirestoreRef';
 export default function Home() {
   const [showForm, setShowForm] = useState(false);
 
-  const trips = useFirestoreRealtimeUpdate(getJourneyCollectionRef());
+  const trips = useFirestoreRealtimeUpdate(getJourneyCollectionRef(), 'collection');
 
   return (
     // <main className={styles.main}>
       <main>
-        {trips.map((doc, i)=><TripCard key={`trip${i}`} {...doc.data()} id={doc.id}/>)}
+        {trips ? trips.map((doc, i)=><TripCard key={`trip${i}`} {...doc.data()} id={doc.id}/>) : null}
       <NewTripForm show={showForm}/>
       <button onClick={()=>{setShowForm(!showForm)}}>New Trip</button>
     </main>

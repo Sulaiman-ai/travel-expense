@@ -1,14 +1,16 @@
 "use client";
 
 import styles from '../dashboard.module.css';
+
 import {getDocument, getDocumentsFromCollection} from '../../firebase/getData';
 import { addCategory, editCategory } from '../../firebase/setData';
-import { useState, useEffect } from 'react';
-
-import BudgetBreakdown from './components/budgetBreakdown';
-import NewCategoryForm from './components/newCategoryForm';
 import useFirestoreRealtimeUpdate from '../../firebase/useFirestoreRealtimeUpdate';
 import { getCategoryCollectionRef, getTripRef } from '@/app/firebase/getFirestoreRef';
+
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import BudgetBreakdown from './components/budgetBreakdown';
+import NewCategoryForm from './components/newCategoryForm';
 
 export default function DashBoard({params}){
     console.log('params', params)
@@ -44,6 +46,7 @@ export default function DashBoard({params}){
 
     return (
         <div className={styles.dashboard}>
+            <Link href="/">Home</Link>
             <div>{`Remaining budget ${remainingBudget}`}</div>
             {/* <div className={styles.fraction}></div> */}
             <div>Budget: {budget}</div><button>Edit</button><input></input>
