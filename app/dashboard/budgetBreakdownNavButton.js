@@ -18,6 +18,7 @@ export default function BudgetBreakdownNavButton (props){
             <input defaultValue = {props.budget} onChange={(e) => {setNewBudget(e.target.value)}}/>
             <button onClick={() => props.handleEdit(props.id, {name:newCategory, budget:newBudget})}>Save</button>
         </div>
+        <button onClick={()=>props.handleDelete(props.id)}>Delete Category</button>
         </div>
     )
 }

@@ -5,7 +5,7 @@ import {getDocument, getDocumentsFromCollection} from '../../firebase/getData';
 import { addCategory, editCategory } from '../../firebase/setData';
 import { useState, useEffect } from 'react';
 
-import BudgetBreakdownNavButton from '../budgetBreakdownNavButton';
+import BudgetBreakdown from './components/budgetBreakdown';
 import NewCategoryForm from './components/newCategoryForm';
 import useFirestoreRealtimeUpdate from '../../firebase/useFirestoreRealtimeUpdate';
 import { getCategoryCollectionRef, getTripRef } from '@/app/firebase/getFirestoreRef';
@@ -37,10 +37,6 @@ export default function DashBoard({params}){
         console.log('remainingbudget', remainingBudget);
         console.log(tripDoc);}
     }, [tripDoc, categoryDocs])
-
-    const handleEdit = async (category_id, data) => {
-        editCategory(params.id, category_id, data)
-    }
     
     const handleAddCategory = async (title, data) => {
         addCategory(params.id, title, data);
@@ -52,9 +48,7 @@ export default function DashBoard({params}){
             {/* <div className={styles.fraction}></div> */}
             <div>Budget: {budget}</div><button>Edit</button><input></input>
             <div>Destination: {destination}</div><button>Edit</button>
-            {categoryDocs ? categoryDocs.map((doc, index)=> 
-                <BudgetBreakdownNavButton key={`bbnb${index}`} id={doc.id} category={doc.data().name} budget={doc.data().budget} handleEdit = {handleEdit}/>
-            ) : console.log(categoryDocs)}
+            <BudgetBreakdown categoryDocs={categoryDocs} trip_id={params.id}/>
             <NewCategoryForm handleAddCategory={handleAddCategory}/>
         </div>
     )
