@@ -5,3 +5,17 @@
 .hide {
     visibility: hidden;
 }
+
+.container {
+    background-color: white;
+    padding: 1em;
+}
+
+.closeButton {
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    border-style: none;
+    width: 2em;
+    aspect-ratio: 1;
+}

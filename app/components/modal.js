@@ -17,7 +17,11 @@ function Modal({ children, modalTrigger }){
 
 
     return (
-        <div className={`${styles.modalBackground} ${visibilityClass}`} onClick={()=>{setShow(false)}}>
+        <div className={`${styles.modalBackground} ${visibilityClass}`} onClick={(e)=>{
+            if (e.target === e.currentTarget){
+                setShow(false)
+            }
+            }}>
             {content}
         </div>
     )
