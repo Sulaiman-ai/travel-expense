@@ -14,7 +14,8 @@ export default function NewTripForm (props){
     }
     
     return (
-        <div className={visibility}>
+        <div>
+            <button onClick={props.handleClose}>Close Modal</button>
             <h2>New Trip</h2>
             <input onChange={(e)=>{setLocation(e.target.value)}} placeholder="Location"/>
             <input onChange={(e)=>{setBudget(e.target.value)}} placeholder="Budget"/>
