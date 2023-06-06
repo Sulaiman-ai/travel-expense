@@ -8,6 +8,10 @@
     margin: 1em;
 }
 
+.button_container:hover {
+    cursor: pointer;
+}
+
 .button_title {
     font-weight: 600;
 }
