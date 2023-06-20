@@ -11,6 +11,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import BudgetBreakdown from './components/budgetBreakdown';
 import NewCategoryForm from './components/newCategoryForm';
+import CircleProgressBar from './components/circleProgressBar';
 
 export default function DashBoard({params}){
     console.log('params', params)
@@ -47,6 +48,7 @@ export default function DashBoard({params}){
     return (
         <div className={styles.dashboard}>
             <Link href="/">Home</Link>
+            <CircleProgressBar fraction={1-(remainingBudget/budget)}/>
             <div>{`Remaining budget ${remainingBudget}`}</div>
             {/* <div className={styles.fraction}></div> */}
             <div>Budget: {budget}</div><button>Edit</button><input></input>
