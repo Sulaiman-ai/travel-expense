@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from './newtripform.module.css';
-import { addTrip } from "./firebase/setData";
+import { addTrip } from "../../firebase/setData";
 
 export default function NewTripForm (props){
     const [location, setLocation] = useState();

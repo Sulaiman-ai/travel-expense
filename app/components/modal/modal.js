@@ -1,6 +1,6 @@
 import { useState, cloneElement, useEffect } from "react";
-import styles from '../css/modal.module.css';
-import utilStyles from '../css/util.module.css';
+import styles from './modal.module.css';
+import utilStyles from '../../css/util.module.css';
 
 function Modal({ children, modalTrigger }){
     const [show, setShow] = useState(false);

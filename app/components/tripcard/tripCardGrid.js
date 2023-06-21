@@ -1,6 +1,6 @@
-import TripCard from "../tripCard";
+import TripCard from "./tripCard";
 
-import style from '../tripcard.module.css';
+import style from './tripcard.module.css';
 
 export default function TripCardGrid (props){
     return (

@@ -1,4 +1,4 @@
-import BudgetBreakdownNavButton from '../../budgetBreakdownNavButton';
+import BudgetBreakdownNavButton from './budgetbreakdownnavbutton/budgetBreakdownNavButton';
 import { addCategory, editCategory } from '@/app/firebase/setData';
 import { deleteCategory } from '@/app/firebase/deleteData';
 

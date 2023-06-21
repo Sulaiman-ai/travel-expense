@@ -2,10 +2,10 @@
 
 import Image from 'next/image'
 import { useState, useRef } from 'react';
-import NewTripForm from './newTripForm';
-import TripCard from './tripCard';
-import TripCardGrid from './components/tripCardGrid';
-import { Modal, ModalTrigger } from './components/modal';
+import NewTripForm from './components/tripform/newTripForm';
+import TripCard from './components/tripcard/tripCard';
+import TripCardGrid from './components/tripcard/tripCardGrid';
+import { Modal, ModalTrigger } from './components/modal/modal';
 import useFirestoreRealtimeUpdate from './firebase/useFirestoreRealtimeUpdate';
 import { getJourneyCollectionRef } from './firebase/getFirestoreRef';
 // import styles from './page.module.css'

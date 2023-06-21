@@ -1,6 +1,6 @@
 "use client";
 
-import styles from '../dashboard.module.css';
+import styles from './css/dashboard.module.css';
 
 import {getDocument, getDocumentsFromCollection} from '../../firebase/getData';
 import { addCategory, editCategory } from '../../firebase/setData';
@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import BudgetBreakdown from './components/budgetBreakdown';
 import NewCategoryForm from './components/newCategoryForm';
-import CircleProgressBar from './components/circleProgressBar';
+import CircleProgressBar from './components/circleprogressbar/circleProgressBar';
 
 export default function DashBoard({params}){
     console.log('params', params)

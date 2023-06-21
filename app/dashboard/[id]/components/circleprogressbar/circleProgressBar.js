@@ -1,4 +1,4 @@
-import progressStyle from '../css/circleprogressbar.module.css';
+import progressStyle from './circleprogressbar.module.css';
 
 function calculateTangent(fraction){
     const radius = 20;

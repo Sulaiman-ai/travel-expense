@@ -5,7 +5,7 @@ import {getDocument, getDocumentsFromCollection} from '../firebase/getData';
 import { addCategory } from '../firebase/setData';
 import { useState, useEffect } from 'react';
 
-import BudgetBreakdownNavButton from './budgetBreakdownNavButton';
+import BudgetBreakdownNavButton from './[id]/components/budgetbreakdownnavbutton/budgetBreakdownNavButton';
 import useFirestoreRealtimeUpdate from '../firebase/useFirestoreRealtimeUpdate';
 
 export default function DashBoard(){

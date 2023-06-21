@@ -1,6 +1,6 @@
 import styles from './nav_budget.module.css';
 import { useState, useRef } from 'react';
-import { Modal } from '../components/modal';
+import { Modal } from '../../../../components/modal/modal';
 
 export default function BudgetBreakdownNavButton (props){
     console.log('category id', props.id, 'category', props.category, 'budget', props.budget)
