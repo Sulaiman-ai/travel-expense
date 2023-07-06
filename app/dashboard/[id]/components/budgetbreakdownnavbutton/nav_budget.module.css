@@ -1,11 +1,12 @@
 .button_container {
     background-color: darkgrey;
-    border: solid;
-    width: fit-content;
+    /* border: solid; */
+    border-radius: 20px;
+    /* width: fit-content; */
     display: grid;
     grid-template-columns: 3fr 1fr;
     padding: 1em;
-    margin: 1em;
+    /* margin: 1em; */
 }
 
 .button_container:hover {
@@ -19,4 +20,11 @@
 .button_budget {
     font-weight: 600;
     color: aqua;
+}
+
+.category_grid {
+    margin: 1em;
+    display: grid;
+    width: fit-content;
+    gap: .1em;
 }

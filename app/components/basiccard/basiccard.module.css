@@ -1,0 +1,26 @@
+.title {
+    color: lightgrey;
+}
+
+.content {
+    font-weight: 600;
+    font-size: 2em;
+}
+
+.container {
+    margin: 1em;
+    padding: 1em;
+    border: solid;
+    border-radius: 10% / 20%;
+    /* height: fit-content; */
+    width: fit-content;
+    aspect-ratio: 2/1;
+}
+
+.button {
+    border-radius: 50%;
+}
+
+.button:hover {
+    border: solid;
+}

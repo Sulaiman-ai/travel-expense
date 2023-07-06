@@ -1,4 +1,5 @@
 import styles from './nav_budget.module.css';
+import formStyles from '../../../../components/tripform/newtripform.module.css';
 import { useState, useRef } from 'react';
 import { Modal } from '../../../../components/modal/modal';
 
@@ -17,13 +18,13 @@ export default function BudgetBreakdownNavButton (props){
             <div className={styles.button_budget}>{props.budget ? `£${props.budget}` : "£1000"}</div>
         </div>
         <Modal modalTrigger={categoryDiv}>
-        <div>
-            <input defaultValue = {props.category} onChange={(e) => {setNewCategory(e.target.value)}}/>
-            <input defaultValue = {props.budget} onChange={(e) => {setNewBudget(e.target.value)}}/>
+        <div className={formStyles.container}>
+            <input className={formStyles.input} defaultValue = {props.category} onChange={(e) => {setNewCategory(e.target.value)}}/>
+            <input className={formStyles.input} defaultValue = {props.budget} onChange={(e) => {setNewBudget(e.target.value)}}/>
             <button onClick={() => props.handleEdit(props.id, {name:newCategory, budget:newBudget})}>Save</button>
         </div>
         </Modal>
-        <button onClick={()=>props.handleDelete(props.id)}>Delete Category</button>
+        {/* <button onClick={()=>props.handleDelete(props.id)}>Delete Category</button> */}
         </div>
     )
 }

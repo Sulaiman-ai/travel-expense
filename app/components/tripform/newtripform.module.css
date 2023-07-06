@@ -7,8 +7,24 @@
 }
 
 .container {
+    display: flex;
+    gap: .5rem;
+    flex-direction: column;
+    --height: 12rem;
+    height: var(--height);
     background-color: white;
     padding: 1em;
+    border-radius: calc(var(--height)*15/100);
+}
+
+.input {
+    border: none;
+}
+
+.input:focus {
+    height: 1.5rem;
+    outline: none;
+    border-bottom: solid;
 }
 
 .closeButton {

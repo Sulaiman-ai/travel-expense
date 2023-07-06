@@ -12,6 +12,7 @@ import Link from 'next/link';
 import BudgetBreakdown from './components/budgetBreakdown';
 import NewCategoryForm from './components/newCategoryForm';
 import CircleProgressBar from './components/circleprogressbar/circleProgressBar';
+import BasicCard from '../../components/basiccard/basicCard';
 
 export default function DashBoard({params}){
     console.log('params', params)
@@ -48,10 +49,14 @@ export default function DashBoard({params}){
     return (
         <div className={styles.dashboard}>
             <CircleProgressBar fraction={1-(remainingBudget/budget)}/>
+            <BasicCard title='Destination' content={destination}/>
+            <BasicCard title='Budget' content={budget}/>
             <div>{`Remaining budget ${remainingBudget}`}</div>
             {/* <div className={styles.fraction}></div> */}
-            <div>Budget: {budget}</div><button>Edit</button><input></input>
-            <div>Destination: {destination}</div><button>Edit</button>
+            <div>Budget: {budget}</div>
+            {/* <button>Edit</button><input></input> */}
+            <div>Destination: {destination}</div>
+            {/* <button>Edit</button> */}
             <BudgetBreakdown categoryDocs={categoryDocs} trip_id={params.id}/>
             <NewCategoryForm handleAddCategory={handleAddCategory}/>
         </div>

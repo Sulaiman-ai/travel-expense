@@ -1,11 +1,14 @@
 .container {
-    border: solid;
+    /* border: solid; */
     display: flex;
     flex-direction: column;
     width: fit-content;
     padding: 1em;
     /* margin: 2em; */
     background-color: lightgrey;
+    border-radius: 15%;
+    aspect-ratio: 1;
+    cursor: pointer;
 }
 
 .cardGrid {
