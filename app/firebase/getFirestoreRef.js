@@ -19,4 +19,8 @@ function getJourneyCollectionRef(){
     return journeyCollectionRef;
 };
 
-export { getJourneyCollectionRef, getTripRef, getCategoryCollectionRef };
+function getTransactionCollectionRef(){
+    return collection(db, 'transactions');
+}
+
+export { getJourneyCollectionRef, getTripRef, getCategoryCollectionRef, getTransactionCollectionRef };
