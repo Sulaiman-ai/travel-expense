@@ -56,9 +56,9 @@ export default function Transactions(){
         timestamp={doc.data().timestamp} amount={doc.data().amount}/>)}
 
         <form onSubmit={handleAddTransaction}>
-        <input name="transaction" onChange={handleInputChange}/>
-            <input name="amount" onChange={handleInputChange}/>
-            <input name="currency" onChange={handleInputChange}/>
+        <input name="transaction" placeholder="transaction" onChange={handleInputChange}/>
+            <input name="amount" placeholder="amount" onChange={handleInputChange}/>
+            <input name="currency" placeholder="currency" onChange={handleInputChange}/>
             <select name="trip_id" onChange={handleInputChange}>
                 {trips?.map((doc) => <option value={doc.id}>{doc.data().location}</option>)}
             </select>
