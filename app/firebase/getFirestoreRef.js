@@ -23,4 +23,8 @@ function getTransactionCollectionRef(){
     return collection(db, 'transactions');
 }
 
-export { getJourneyCollectionRef, getTripRef, getCategoryCollectionRef, getTransactionCollectionRef };
+function getCategoryRef(trip_id, category_id) {
+    return doc(getCategoryCollectionRef(trip_id), category_id);
+}
+
+export { getJourneyCollectionRef, getTripRef, getCategoryCollectionRef, getTransactionCollectionRef, getCategoryRef };
