@@ -52,8 +52,7 @@ export default function Transactions(){
         <>
         <h1>Transactions</h1>
         {transactions?.map((doc)=>
-        <TransactionDisplay transaction={doc.data().transaction} 
-        timestamp={doc.data().timestamp} amount={doc.data().amount}/>)}
+        <TransactionDisplay {...doc.data()}/>)}
 
         <form onSubmit={handleAddTransaction}>
         <input name="transaction" placeholder="transaction" onChange={handleInputChange}/>
