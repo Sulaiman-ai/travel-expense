@@ -8,6 +8,7 @@ import TripCardGrid from './components/tripcard/tripCardGrid';
 import { Modal, ModalTrigger } from './components/modal/modal';
 import useFirestoreRealtimeUpdate from './firebase/useFirestoreRealtimeUpdate';
 import { getJourneyCollectionRef } from './firebase/getFirestoreRef';
+import Link from 'next/link';
 // import styles from './page.module.css'
 
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
   return (
     // <main className={styles.main}>
       <main>
+        <Link href="/transactions">Transactions</Link>
         <Modal modalTrigger={openFormButton}>
           <NewTripForm></NewTripForm>
         </Modal>

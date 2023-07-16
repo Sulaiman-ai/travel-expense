@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { getTransactionCollectionRef, getJourneyCollectionRef, getCategoryCollectionRef, getCategoryRef } from "../firebase/getFirestoreRef";
-import { addDoc, getDocs, serverTimestamp } from "firebase/firestore";
+import { addDoc, getDocs, serverTimestamp, updateDoc, arrayUnion, FieldValue } from "firebase/firestore";
 import useFirestoreRealtimeUpdate from "../firebase/useFirestoreRealtimeUpdate";
 import TransactionDisplay from "./components/transactiondisplay/transactionDisplay";
 import Form from "../components/form";
@@ -38,13 +38,17 @@ export default function Transactions(){
 
     const handleAddTransaction = async (event) => {
         event.preventDefault();
+        const categoryRef = getCategoryRef(formData.trip_id, formData.category_id);
         const transaction = {
             transaction: formData.transaction, 
             amount:{[formData.currency]:formData.amount},
             timestamp: new Date(),
-            category: getCategoryRef(formData.trip_id, formData.category_id)
+            category: categoryRef
         }
-        await addDoc(transactionCollectionRef, transaction);
+        const transactionDoc = await addDoc(transactionCollectionRef, transaction);
+
+        await updateDoc(categoryRef, {transactions: arrayUnion(transactionDoc)})
+        // await categoryRef.update({transactions: FieldValue.arrayUnion(transactionCollectionRef)})
 
     }
 
