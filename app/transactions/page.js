@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { getTransactionCollectionRef, getJourneyCollectionRef, getCategoryCollectionRef, getCategoryRef } from "../firebase/getFirestoreRef";
-import { addDoc, getDocs, serverTimestamp, updateDoc, arrayUnion, FieldValue } from "firebase/firestore";
+import { addDoc, getDocs, serverTimestamp, updateDoc, arrayUnion, FieldValue, increment } from "firebase/firestore";
 import useFirestoreRealtimeUpdate from "../firebase/useFirestoreRealtimeUpdate";
 import TransactionDisplay from "./components/transactiondisplay/transactionDisplay";
 import Form from "../components/form";
@@ -47,7 +47,7 @@ export default function Transactions(){
         }
         const transactionDoc = await addDoc(transactionCollectionRef, transaction);
 
-        await updateDoc(categoryRef, {transactions: arrayUnion(transactionDoc)})
+        await updateDoc(categoryRef, {transactions: arrayUnion(transactionDoc), spent: increment(formData.amount)})
         // await categoryRef.update({transactions: FieldValue.arrayUnion(transactionCollectionRef)})
 
     }
