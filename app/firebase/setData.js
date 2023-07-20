@@ -1,8 +1,14 @@
 import firebase_app from "./config";
+import { userauth } from "./authUsers";
+import { onAuthStateChanged } from "firebase/auth";
 import { getFirestore, doc, setDoc, collection, addDoc, getDoc } from "firebase/firestore";
 import { getTripRef, getCategoryCollectionRef } from "./getFirestoreRef";
 
 const db = getFirestore(firebase_app);
+let userid;
+
+onAuthStateChanged(userauth, (user) => userid = user.uid);
+
 async function addCategory (trip_id, title, data) {
     let result = null;
     let error = null;
@@ -36,8 +42,9 @@ async function editCategory(trip_id, category_id, data){
 }
 
 async function addTrip(data) {
+    const userDoc = doc(collection(db, 'users'), userid);
     try {
-        await addDoc(collection(db, 'journey'), data);
+        await addDoc(collection(userDoc, 'journey'), data);
         console.log('trip added');
     } catch (e) {
         let error = e;

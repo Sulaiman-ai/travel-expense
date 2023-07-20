@@ -1,6 +1,8 @@
 import { useState } from "react";
 import styles from './newtripform.module.css';
 import { addTrip } from "../../firebase/setData";
+import { userauth } from "@/app/firebase/authUsers";
+import useFirebaseAuth from "@/app/firebase/useFirebaseAuth";
 
 export default function NewTripForm (props){
     const [location, setLocation] = useState();
