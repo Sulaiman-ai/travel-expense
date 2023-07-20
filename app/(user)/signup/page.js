@@ -2,6 +2,7 @@
 
 import { userauth } from "@/app/firebase/authUsers";
 import useFirebaseAuth from "@/app/firebase/useFirebaseAuth";
+import { addUser } from "@/app/firebase/setData";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -41,6 +42,7 @@ export default function SignUp (){
             const user = userCredential.user;
             console.log('user', user)
             setUser(user.uid);
+            addUser(user.uid);
         })
             .catch((error) => {
                 console.log('error', error)

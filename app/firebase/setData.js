@@ -1,5 +1,5 @@
 import firebase_app from "./config";
-import { getFirestore, doc, setDoc, collection, addDoc } from "firebase/firestore";
+import { getFirestore, doc, setDoc, collection, addDoc, getDoc } from "firebase/firestore";
 import { getTripRef, getCategoryCollectionRef } from "./getFirestoreRef";
 
 const db = getFirestore(firebase_app);
@@ -45,4 +45,12 @@ async function addTrip(data) {
     }
 }
 
-export {addCategory, editCategory, addTrip}
+async function addUser (userid){
+    const user = doc(collection(db, 'users'), userid);
+    const snap = await getDoc(user);
+    if (!snap.exists()){
+        await setDoc(user, {});
+    }
+}
+
+export {addCategory, editCategory, addTrip, addUser}
