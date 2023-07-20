@@ -50,12 +50,9 @@ export default function SignUp (){
 
     return (
         <>
-        <button onClick={()=> router.push('/signup')}>signup page</button>
-        <p>{email}</p>
-        <p>{password}</p>
-        <p>Auth User: {authUser.uid}</p>
-        <button onClick={toggleOption}>{option}</button>
-        <p>{user}</p>
+        <p>{option}</p>
+        <button onClick={()=>setOption('login')}>Login</button>
+        <button onClick={()=>setOption('signup')}>Sign Up</button>
         <form onSubmit={handleSubmit}>
             <input name="email" placeholder="email" type="email" onChange={(e)=>setEmail(e.target.value)}/>
             <input name="password" placeholder="password" onChange={(e)=>setPassword(e.target.value)}/>

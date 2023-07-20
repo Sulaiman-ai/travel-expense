@@ -7,7 +7,7 @@ const formatAuthUser = (user) => ({
 });
 
 export default function useFirebaseAuth(auth) {
-  const [authUser, setAuthUser] = useState({uid: '', email: ''});
+  const [authUser, setAuthUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const authStateChanged = async (authState) => {
@@ -28,7 +28,7 @@ export default function useFirebaseAuth(auth) {
 
   const clear = () => {
     setAuthUser(null);
-    setLoading(true);
+    setLoading(false);
   };
 
 //   const signIn = (email, password) =>
