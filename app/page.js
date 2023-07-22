@@ -15,7 +15,7 @@ export default function Home() {
   const [showForm, setShowForm] = useState(false);
   const openFormButton = useRef();
 
-  const trips = useFirestoreRealtimeUpdate(getJourneyCollectionRef(), 'collection');
+  const trips = useFirestoreRealtimeUpdate(getJourneyCollectionRef, 'collection');
 
   return (
     // <main className={styles.main}>

@@ -5,9 +5,9 @@ import { getFirestore, doc, setDoc, collection, addDoc, getDoc } from "firebase/
 import { getTripRef, getCategoryCollectionRef } from "./getFirestoreRef";
 
 const db = getFirestore(firebase_app);
-let userid;
+let userDoc;
 
-onAuthStateChanged(userauth, (user) => userid = user.uid);
+onAuthStateChanged(userauth, (user) => userDoc = doc(collection(db, 'users'), user.uid));
 
 async function addCategory (trip_id, title, data) {
     let result = null;
@@ -42,7 +42,6 @@ async function editCategory(trip_id, category_id, data){
 }
 
 async function addTrip(data) {
-    const userDoc = doc(collection(db, 'users'), userid);
     try {
         await addDoc(collection(userDoc, 'journey'), data);
         console.log('trip added');

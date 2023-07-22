@@ -4,9 +4,6 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { getFirestore, doc, collection } from 'firebase/firestore';
 
 const db = getFirestore(firebase_app);
-let userDoc;
-
-onAuthStateChanged(userauth, (user) => userDoc = doc(collection(db, 'users'), user.uid));
 
 function getTripRef(trip_id){
     let tripRef = doc(collection(db, 'journey'), trip_id);
@@ -19,7 +16,8 @@ function getCategoryCollectionRef(trip_id){
     return categoryCollectionRef;
 };
 
-function getJourneyCollectionRef(){
+function getJourneyCollectionRef(userDoc){
+    console.log(userDoc);
     let journeyCollectionRef = collection(userDoc, 'journey');
     return journeyCollectionRef;
 };
@@ -32,4 +30,8 @@ function getCategoryRef(trip_id, category_id) {
     return doc(getCategoryCollectionRef(trip_id), category_id);
 }
 
-export { getJourneyCollectionRef, getTripRef, getCategoryCollectionRef, getTransactionCollectionRef, getCategoryRef };
+function getUserDoc (uid){
+    return doc(collection(db, 'users'), uid);
+}
+
+export { getJourneyCollectionRef, getTripRef, getCategoryCollectionRef, getTransactionCollectionRef, getCategoryRef, getUserDoc };
