@@ -13,7 +13,7 @@ async function addCategory (trip_id, title, data) {
     let result = null;
     let error = null;
     // const categoryCollectionRef = db.collection('journey').doc(trip).collection('spending-categories');
-    const trip = doc(collection(db, 'journey'), trip_id);
+    const trip = doc(collection(userDoc, 'journey'), trip_id);
     const categoryCollectionRef = collection(trip, 'spending-categories');
 
     try {

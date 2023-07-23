@@ -21,17 +21,21 @@ export default function DashBoard({params}){
     const [remainingBudget, setRemainingBudget] = useState();
     const [destination, setDestination] = useState();
     
-    const categoryDocs = useFirestoreRealtimeUpdate(getCategoryCollectionRef(params.id), 'collection');
-    const tripDoc = useFirestoreRealtimeUpdate(getTripRef(params.id), 'doc');
+    const categoryDocs = useFirestoreRealtimeUpdate((userDoc) => getCategoryCollectionRef(params.id, userDoc), 'collection');
+    const tripDoc = useFirestoreRealtimeUpdate((userDoc) => getTripRef(params.id, userDoc), 'doc');
 
     useEffect(()=>{
-        getDocument('journey', params.id)
-        .then(res => {
-            let data = res.result.data();
-            setBudget(data.budget);
-            setDestination(data.location);
-        });
-    }, []);
+        if(tripDoc) {
+            setBudget(tripDoc.data().budget);
+            setDestination(tripDoc.data().location);
+        }
+        // getDocument('journey', params.id)
+        // .then(res => {
+        //     let data = res.result.data();
+        //     setBudget(data.budget);
+        //     setDestination(data.location);
+        // });
+    }, [tripDoc]);
 
     useEffect(() => {
         if(tripDoc && categoryDocs){

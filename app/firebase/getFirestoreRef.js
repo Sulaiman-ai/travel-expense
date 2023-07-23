@@ -5,13 +5,13 @@ import { getFirestore, doc, collection } from 'firebase/firestore';
 
 const db = getFirestore(firebase_app);
 
-function getTripRef(trip_id){
-    let tripRef = doc(collection(db, 'journey'), trip_id);
+function getTripRef(trip_id, userDoc){
+    let tripRef = doc(collection(userDoc, 'journey'), trip_id);
     return tripRef;
 };
 
-function getCategoryCollectionRef(trip_id){
-    let tripRef = getTripRef(trip_id);
+function getCategoryCollectionRef(trip_id, userDoc){
+    let tripRef = getTripRef(trip_id, userDoc);
     let categoryCollectionRef = collection(tripRef, 'spending-categories');
     return categoryCollectionRef;
 };

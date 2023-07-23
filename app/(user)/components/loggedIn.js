@@ -16,7 +16,7 @@ export default function LoggedIn (){
         if (!loading && !authUser) {
             router.push('/signup')
         } 
-        else if (authUser) {
+        else if (authUser && pathname == '/signup') {
             router.push('/')
         }
     }, [authUser, loading, pathname]);
