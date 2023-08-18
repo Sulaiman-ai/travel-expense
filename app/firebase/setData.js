@@ -32,7 +32,7 @@ async function addCategory (trip_id, title, data) {
 
 async function editCategory(trip_id, category_id, data){
     // const tripRef = getTripRef(trip_id);
-    const categoryCollectionRef = getCategoryCollectionRef(trip_id);
+    const categoryCollectionRef = getCategoryCollectionRef(trip_id, userDoc);
 
     try {
         await setDoc(doc(categoryCollectionRef, category_id), data)
