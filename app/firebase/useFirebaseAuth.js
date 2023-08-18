@@ -9,6 +9,7 @@ const formatAuthUser = (user) => ({
 export default function useFirebaseAuth(auth) {
   const [authUser, setAuthUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [userDoc, setUserDoc] = useState(true);
 
   const authStateChanged = async (authState) => {
     if (!authState) {

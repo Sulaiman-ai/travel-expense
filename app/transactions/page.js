@@ -1,16 +1,23 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getTransactionCollectionRef, getJourneyCollectionRef, getCategoryCollectionRef, getCategoryRef } from "../firebase/getFirestoreRef";
+import { getTransactionCollectionRef, getJourneyCollectionRef, getCategoryCollectionRef, getCategoryRef, getUserID, getUserDoc } from "../firebase/getFirestoreRef";
 import { doc, addDoc, setDoc, getDocs, serverTimestamp, updateDoc, arrayUnion, FieldValue, increment } from "firebase/firestore";
 import useFirestoreRealtimeUpdate from "../firebase/useFirestoreRealtimeUpdate";
+import useFirebaseAuth from "../firebase/useFirebaseAuth";
+import { userauth } from "../firebase/authUsers";
 import TransactionDisplay from "./components/transactiondisplay/transactionDisplay";
 import Form from "../components/form";
 import useForm from "../hooks/useForm";
 
 export default function Transactions(){
-    const transactionCollectionRef = getTransactionCollectionRef();
-    const transactions = useFirestoreRealtimeUpdate(transactionCollectionRef, 'collection');
+    // const userid = getUserID();
+    // console.log('userid', userid);
+    // const {authUser} = useFirebaseAuth(userauth);
+    const [userid, setUserid] = useState();
+    const [transactionCollectionRef, setTransactionCollectionRef] = useState();
+    // const transactionCollectionRef = getTransactionCollectionRef();
+    const transactions = useFirestoreRealtimeUpdate(getTransactionCollectionRef, 'collection');
     transactions?.map((doc)=>{console.log(doc.ref.parent.path);})
     const [newTransaction, setNewTransaction] = useState();
 
@@ -24,27 +31,55 @@ export default function Transactions(){
         }
     );
 
-    const journeyCollectionRef = getJourneyCollectionRef();
+    // const journeyCollectionRef = getJourneyCollectionRef();
     // const categoryCollectionRef = getCategoryCollectionRef(formData.trip?.id);
 
-    const trips = useFirestoreRealtimeUpdate(journeyCollectionRef, 'collection');
+    const trips = useFirestoreRealtimeUpdate(getJourneyCollectionRef, 'collection');
     const [categories, setCategories] = useState();
+    const [category, setCategory] = useState();
 
-    const {transaction, amount, currency, trip, category} = formData;
+    // const {transaction, amount, currency, trip, category} = formData;
 
     useEffect(() => {(async () =>{
-        formData.trip_id ? setCategories(await getDocs(getCategoryCollectionRef(formData.trip_id))) : null;
-    })()}, [formData.trip_id])
+        console.log('cat affected', formData, userid);
+        if (formData.trip_id && userid){
+            const userDoc = getUserDoc(userid);
+            formData.trip_id ? setCategories(await getDocs(getCategoryCollectionRef(formData.trip_id, userDoc))) : null;
+        }
+    })()}, [formData.trip_id, userid])
+
+    useEffect(()=> {
+        console.log('categories', categories?.docs[0]?.id);
+        setCategory(categories?.docs[0]?.id);
+    }, [categories]);
+
+    useEffect(() => {
+        getUserID().then((uid) => {
+            setUserid(uid);
+            const userDoc = getUserDoc(uid);
+            setTransactionCollectionRef(getTransactionCollectionRef(userDoc));
+            console.log('current user', uid)
+        })
+        // const userid = getUserID();
+        // setTransactionCollectionRef(getTransactionCollectionRef(userid))
+    }, [userid]);
 
     const handleAddTransaction = async (event, id=null) => {
+        console.log('trans coll', transactionCollectionRef)
         event.preventDefault();
-        const categoryRef = getCategoryRef(formData.trip_id, formData.category_id);
+        console.log('before catref', formData);
+        const userDoc = getUserDoc(userid);
+        console.log('user', userDoc);
+        const categoryRef = getCategoryRef(formData.trip_id, category, userDoc);
+        console.log('after catref');
         const transaction = {
             transaction: formData.transaction, 
             amount:{[formData.currency]:formData.amount},
             timestamp: new Date(),
             category: categoryRef
         }
+
+        console.log('transaction assigned', transactionCollectionRef);
 
         const transactionDoc = id ? doc(transactionCollectionRef, id) : doc(transactionCollectionRef);
         await setDoc(transactionDoc, transaction);
