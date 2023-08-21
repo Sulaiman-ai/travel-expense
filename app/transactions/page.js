@@ -37,6 +37,7 @@ export default function Transactions(){
     const trips = useFirestoreRealtimeUpdate(getJourneyCollectionRef, 'collection');
     const [categories, setCategories] = useState();
     const [category, setCategory] = useState();
+    const [trip, setTrip] = useState();
 
     // const {transaction, amount, currency, trip, category} = formData;
 
@@ -51,27 +52,39 @@ export default function Transactions(){
     useEffect(()=> {
         console.log('categories', categories?.docs[0]?.id);
         setCategory(categories?.docs[0]?.id);
-    }, [categories]);
+        trips ? setTrip(trips[0].id) : null;
+    }, [categories, trips]);
 
     useEffect(() => {
-        getUserID().then((uid) => {
+        getUserID().then(async(uid) => {
+            console.log('trips', trips)
             setUserid(uid);
             const userDoc = getUserDoc(uid);
             setTransactionCollectionRef(getTransactionCollectionRef(userDoc));
+            trips ? setCategories(await getDocs(getCategoryCollectionRef(trips[0].id, userDoc))) : null;
             console.log('current user', uid)
         })
         // const userid = getUserID();
         // setTransactionCollectionRef(getTransactionCollectionRef(userid))
-    }, [userid]);
+    }, [userid, trips]);
+
+    // useEffect(async ()=>{
+    //     console.log('userid', userid);
+    //     const userDoc = getUserDoc(userid);
+    //     console.log('trips', trips);
+    //     setCategories(await getDocs(getCategoryCollectionRef(trips?.docs[0].id, userDoc)))
+
+    // }, [])
 
     const handleAddTransaction = async (event, id=null) => {
-        console.log('trans coll', transactionCollectionRef)
+        // console.log('trans coll', transactionCollectionRef)
         event.preventDefault();
-        console.log('before catref', formData);
+        // console.log('before catref', formData);
         const userDoc = getUserDoc(userid);
-        console.log('user', userDoc);
-        const categoryRef = getCategoryRef(formData.trip_id, category, userDoc);
-        console.log('after catref');
+        // console.log('user', userDoc);
+        const categoryRef = getCategoryRef(formData.trip_id || trip,
+            formData.category_id || category, userDoc);
+        // console.log('after catref');
         const transaction = {
             transaction: formData.transaction, 
             amount:{[formData.currency]:formData.amount},
