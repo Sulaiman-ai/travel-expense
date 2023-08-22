@@ -20,7 +20,6 @@ export default function Home() {
   return (
     // <main className={styles.main}>
       <main>
-        <Link href="/transactions">Transactions</Link>
         <Modal modalTrigger={openFormButton}>
           <NewTripForm></NewTripForm>
         </Modal>
