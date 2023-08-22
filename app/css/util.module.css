@@ -5,3 +5,7 @@
 .hide {
     visibility: hidden;
 }
+
+.spanrow {
+    grid-column: 1/-1;
+}

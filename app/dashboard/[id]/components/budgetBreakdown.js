@@ -17,13 +17,13 @@ export default function BudgetBreakdown(props){
     }
 
     return (
-        <>
-        <button onClick={() => {setEdit(!edit)}}>Edit</button>
+        <div className={styles.container}>
         <div className={styles.category_grid}>
+        <button onClick={() => {setEdit(!edit)}} className={styles.editbutton}>Edit</button>
         {props.categoryDocs ? props.categoryDocs.map((doc, index)=> 
             <BudgetBreakdownNavButton key={`bbnb${index}`} id={doc.id} edit={edit} category={doc.data().name} budget={doc.data().budget} transactions={doc.data()?.transactions} handleEdit = {handleEdit} handleDelete={handleDelete}/>
         ) : console.log(props.categoryDocs)}
         </div>
-        </>
+        </div>
     )
 }

@@ -7,6 +7,7 @@
     grid-template-columns: 3fr 1fr;
     padding: 1em;
     /* margin: 1em; */
+    grid-column: 1;
 }
 
 .button_container:hover {
@@ -27,4 +28,14 @@
     display: grid;
     width: fit-content;
     gap: .1em;
+}
+
+.container {
+    padding: 1em;
+    display: grid;
+    grid-template-columns: fit-content(100%) fit-content(100%);
+}
+
+.editbutton {
+    grid-column: 2;
 }

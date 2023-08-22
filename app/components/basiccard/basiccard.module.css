@@ -8,13 +8,13 @@
 }
 
 .container {
-    margin: 1em;
+    /* margin: 1em; */
     padding: 1em;
     border: solid;
     border-radius: 10% / 20%;
     /* height: fit-content; */
     width: fit-content;
-    aspect-ratio: 2/1;
+    /* aspect-ratio: 2/1; */
 }
 
 .button {

@@ -4,3 +4,14 @@
     border-radius: 50%;
     background-color: brown;
 }
+
+.tripsummarycontainer {
+    display: grid;
+    /* grid-template-columns: fit-content(50%) fit-content(50%); */
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+}
+
+.tripsummarycontainer > * {
+    width: 100%;
+}

@@ -1,6 +1,7 @@
 "use client";
 
 import styles from './css/dashboard.module.css';
+import utilstyles from '../../css/util.module.css';
 
 import {getDocument, getDocumentsFromCollection} from '../../firebase/getData';
 import { addCategory, editCategory } from '../../firebase/setData';
@@ -52,14 +53,17 @@ export default function DashBoard({params}){
 
     return (
         <div className={styles.dashboard}>
-            <CircleProgressBar fraction={1-(remainingBudget/budget)}/>
-            <BasicCard title='Destination' content={destination}/>
-            <BasicCard title='Budget' content={budget}/>
-            <div>{`Remaining budget ${remainingBudget}`}</div>
+            {/* <CircleProgressBar fraction={1-(remainingBudget/budget)}/> */}
+            <div className={styles.tripsummarycontainer}>
+                <BasicCard title='Destination' content={destination} className={utilstyles.spanrow}/>
+                <BasicCard title='Budget' content={budget}/>
+                <BasicCard title='Remaining' content={remainingBudget}/>
+            </div>
+            {/* <div>{`Remaining budget ${remainingBudget}`}</div> */}
             {/* <div className={styles.fraction}></div> */}
-            <div>Budget: {budget}</div>
+            {/* <div>Budget: {budget}</div> */}
             {/* <button>Edit</button><input></input> */}
-            <div>Destination: {destination}</div>
+            {/* <div>Destination: {destination}</div> */}
             {/* <button>Edit</button> */}
             <BudgetBreakdown categoryDocs={categoryDocs} trip_id={params.id}/>
             <NewCategoryForm handleAddCategory={handleAddCategory}/>

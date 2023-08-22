@@ -24,7 +24,7 @@ export default function BudgetBreakdownNavButton (props){
     const categoryDiv = useRef();
 
     return (
-        <div>
+        <>
         <div ref={categoryDiv} className={styles.button_container}>
             <div className={styles.button_title}>{props.category ? props.category : "Accomodation"}</div>
             <div className={styles.button_budget}>{props.budget ? `£${props.budget}` : "£1000"}</div>
@@ -43,7 +43,7 @@ export default function BudgetBreakdownNavButton (props){
             {/* {props.transactions?.map(async (transaction) => <p>{await getDoc(transaction).data().name}</p>)} */}
         </div>}
         </Modal>
-        {/* <button onClick={()=>props.handleDelete(props.id)}>Delete Category</button> */}
-        </div>
+        {props.edit ? <button onClick={()=>props.handleDelete(props.id)}>x</button> : null}
+        </>
     )
 }
