@@ -7,6 +7,8 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "fire
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
+import formstyle from '../css/signupform.module.css';
+
 export default function SignUp (){
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
@@ -52,14 +54,18 @@ export default function SignUp (){
 
     return (
         <>
-        <p>{option}</p>
-        <button onClick={()=>setOption('login')}>Login</button>
-        <button onClick={()=>setOption('signup')}>Sign Up</button>
-        <form onSubmit={handleSubmit}>
-            <input name="email" placeholder="email" type="email" onChange={(e)=>setEmail(e.target.value)}/>
-            <input name="password" placeholder="password" onChange={(e)=>setPassword(e.target.value)}/>
-            <input type="submit" value="Sign Up"/>
-        </form>
+        <div className={formstyle.container}>
+            {/* <p>{option}</p> */}
+            <div className={formstyle.tabcontainer}>
+                <button className={`${formstyle.tab} ${option=='login' ? formstyle.active : null}`} onClick={()=>setOption('login')}>Login</button>
+                <button className={`${formstyle.tab} ${option=='signup' ? formstyle.active : null}`} onClick={()=>setOption('signup')}>Sign Up</button>
+            </div>
+            <form className={formstyle.form} onSubmit={handleSubmit}>
+                <input name="email" placeholder="email" type="email" onChange={(e)=>setEmail(e.target.value)}/>
+                <input name="password" placeholder="password" onChange={(e)=>setPassword(e.target.value)}/>
+                <input type="submit" value={option=='login' ? 'Login' : "Sign Up"}/>
+            </form>
+        </div>
         </>
     )
 }

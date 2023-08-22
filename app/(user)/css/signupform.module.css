@@ -1,0 +1,35 @@
+.container {
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    gap: 2em;
+    border: solid;
+}
+
+.tabcontainer {
+    display: flex;
+    justify-content: space-around;
+    /* border: solid; */
+}
+
+.tab {
+    font-size: 1.25em;
+    border: none;
+    padding: .5em;
+}
+
+.active {
+    text-decoration: underline;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.form input {
+    padding: .5em;
+    font-size: 1em;
+}
