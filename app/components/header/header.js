@@ -1,13 +1,16 @@
 "use client"
 
 import Link from "next/link";
-import LoggedIn from "@/app/(user)/components/loggedIn";
+import useLoggedIn from "@/app/(user)/components/loggedIn";
 
 export default function Header(){
+
+    const { pathname, signUserOut } = useLoggedIn();
+
     return (
         <div>
             <Link href="/"><h1>Travel Expense Tracker</h1></Link>
-            <LoggedIn/>
+            {(pathname !== '/signup') ? <button onClick={signUserOut}>Sign Out</button> : null}
         </div>
     )
 }
