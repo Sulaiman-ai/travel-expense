@@ -2,7 +2,7 @@
     /* border: solid; */
     display: flex;
     flex-direction: column;
-    width: fit-content;
+    /* width: fit-content; */
     padding: 1em;
     /* margin: 2em; */
     background-color: lightgrey;
@@ -15,6 +15,22 @@
     padding: 2em;
     display: grid;
     gap: 1em;
-    grid-template-columns: 1fr 1fr;
+    /* grid-template-columns: 1fr 1fr; */
+    grid-template-columns: fit-content(50%) fit-content(50%);
+    grid-template-rows: fit-content(50%) fit-content(50%);
     width: fit-content;
+}
+
+.newtripbutton {
+    display: flex;
+    flex-direction: column;
+    /* width: fit-content; */
+    font-size: 5em;
+    background-color: lightgrey;
+    border: none;
+    border-radius: 15%;
+    aspect-ratio: 1;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
 }

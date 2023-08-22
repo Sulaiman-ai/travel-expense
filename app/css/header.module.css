@@ -6,10 +6,6 @@
 
 }
 
-.title {
-    /* grid-column: 1/-1; */
-}
-
 .link {
     display: flex;
     align-items: center;

@@ -23,8 +23,7 @@ export default function Home() {
         <Modal modalTrigger={openFormButton}>
           <NewTripForm></NewTripForm>
         </Modal>
-        <TripCardGrid trips={trips}/>
-        <button ref={openFormButton}>New Trip</button>
+        <TripCardGrid trips={trips} newTripTriggerRef = {openFormButton}/>
       {/* <NewTripForm show={showForm}/>
       <button onClick={()=>{setShowForm(!showForm)}}>New Trip</button> */}
     </main>
