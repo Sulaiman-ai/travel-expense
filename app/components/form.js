@@ -15,9 +15,9 @@ export default function Form ({fields, handleSubmit}){
 
     return (
         <form>
-            {fields.map((field)=>
-            <input name={field} placeholder={field} onChange={(e)=>{setData({...data, [e.target.getAttribute("name")]:e.target.value})}}></input>)}
-            <button type="button" onClick={()=>{handleSubmit(data)}}>New Transaction</button>
+            {fields.map((field, index)=>
+            <input key={`forminput${index}`} name={field} placeholder={field} onChange={(e)=>{setData({...data, [e.target.getAttribute("name")]:e.target.value})}}></input>)}
+            <button key={`submit${index}`} type="button" onClick={()=>{handleSubmit(data)}}>New Transaction</button>
 
         </form>
     )

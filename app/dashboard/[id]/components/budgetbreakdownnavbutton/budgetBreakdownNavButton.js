@@ -38,7 +38,7 @@ export default function BudgetBreakdownNavButton (props){
         </div> :
         <div>
             <h1>Transactions</h1>
-            {transactionsDocs ? transactionsDocs.map((doc) => <TransactionDisplay {...doc.data()}/>):null}
+            {transactionsDocs ? transactionsDocs.map((doc) => <TransactionDisplay key={`transactiondisplay${doc.id}}`} {...doc.data()}/>):null}
             {/* {transactionsDocs ? transactionsDocs?.map((doc) => <p>{doc.data().transaction}</p>):null} */}
             {/* {props.transactions?.map(async (transaction) => <p>{await getDoc(transaction).data().name}</p>)} */}
         </div>}

@@ -108,8 +108,8 @@ export default function Transactions(){
         <>
         <h1>Transactions</h1>
         {transactions?.map((doc)=>
-        <TransactionDisplay id={doc.id} {...doc.data()} 
-        Form={<TransactionForm transactionID={doc.id} data={doc.data()} 
+        <TransactionDisplay key={`transactiondisplay${doc.id}`} id={doc.id} {...doc.data()} 
+        Form={<TransactionForm key={`transactionform${doc.id}`} transactionID={doc.id} data={doc.data()} 
         {...{handleAddTransaction, handleInputChange, trips, categories}}/>} 
         handleInputChange={handleInputChange}/>)}
         <TransactionForm {...{handleAddTransaction, handleInputChange, trips, categories}}/>
@@ -126,10 +126,10 @@ const TransactionForm = ({transactionID, data, handleAddTransaction, handleInput
             <input name="currency" placeholder="currency" onChange={handleInputChange}/>
             {/* <input type="datetime-local" /> */}
             <select name="trip_id" onChange={handleInputChange}>
-                {trips?.map((doc) => <option value={doc.id}>{doc.data().location}</option>)}
+                {trips?.map((doc) => <option key={`trip${doc.id}`} value={doc.id}>{doc.data().location}</option>)}
             </select>
             <select name="category_id" onChange={handleInputChange}>
-                {categories?.docs?.map((doc) => <option value={doc.id}>{doc.data().name}</option>)}
+                {categories?.docs?.map((doc) => <option key={`category${doc.id}`} value={doc.id}>{doc.data().name}</option>)}
             </select>
             <button type="submit">Save</button>
         </form>
