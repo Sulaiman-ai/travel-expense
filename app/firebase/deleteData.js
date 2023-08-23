@@ -9,7 +9,7 @@ const db = getFirestore(firebase_app);
 
 let userDoc;
 
-onAuthStateChanged(userauth, (user) => userDoc = doc(collection(db, 'users'), user.uid));
+onAuthStateChanged(userauth, (user) => user ? userDoc = doc(collection(db, 'users'), user.uid):null);
 
 async function deleteCategory(trip_id, category_id){
     const categoryCollectionRef = getCategoryCollectionRef(trip_id, userDoc);

@@ -7,7 +7,7 @@ import { getTripRef, getCategoryCollectionRef } from "./getFirestoreRef";
 const db = getFirestore(firebase_app);
 let userDoc;
 
-onAuthStateChanged(userauth, (user) => userDoc = doc(collection(db, 'users'), user.uid));
+onAuthStateChanged(userauth, (user) => user ? userDoc = doc(collection(db, 'users'), user.uid):null);
 
 async function addCategory (trip_id, title, data) {
     let result = null;
