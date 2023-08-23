@@ -13,12 +13,14 @@ export default function useLoggedIn (){
         console.log('checking if logged in');
         console.log('loading', loading);
         console.log('authuser', authUser);
+        debugger;
         if (!loading && !authUser) {
             router.push('/signup')
         } 
         else if (authUser && pathname == '/signup') {
             router.push('/')
         }
+        debugger;
     }, [authUser, loading, pathname]);
 
     return {pathname, signUserOut}
