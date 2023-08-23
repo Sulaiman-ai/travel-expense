@@ -109,7 +109,7 @@ export default function Transactions(){
         <h1>Transactions</h1>
         {transactions?.map((doc)=>
         <TransactionDisplay id={doc.id} {...doc.data()} 
-        Form={<TransactionForm transactionID={doc.id} 
+        Form={<TransactionForm transactionID={doc.id} data={doc.data()} 
         {...{handleAddTransaction, handleInputChange, trips, categories}}/>} 
         handleInputChange={handleInputChange}/>)}
         <TransactionForm {...{handleAddTransaction, handleInputChange, trips, categories}}/>
@@ -119,9 +119,9 @@ export default function Transactions(){
     )
 }
 
-const TransactionForm = ({transactionID, handleAddTransaction, handleInputChange, trips, categories}) => 
+const TransactionForm = ({transactionID, data, handleAddTransaction, handleInputChange, trips, categories}) => 
         <form onSubmit={(e)=>handleAddTransaction(e, transactionID)}>
-            <input name="transaction" placeholder="transaction" onChange={handleInputChange}/>
+            <input name="transaction" placeholder="transaction" value={data?.transaction||''} onChange={handleInputChange}/>
             <input name="amount" placeholder="amount" onChange={handleInputChange}/>
             <input name="currency" placeholder="currency" onChange={handleInputChange}/>
             {/* <input type="datetime-local" /> */}
