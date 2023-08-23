@@ -10,9 +10,9 @@ export default function useLoggedIn (){
     const pathname = usePathname();
 
     useEffect(() => {
-        // console.log('checking if logged in');
-        // console.log('loading', loading);
-        // console.log('authuser', authUser);
+        console.log('checking if logged in');
+        console.log('loading', loading);
+        console.log('authuser', authUser);
         if (!loading && !authUser) {
             router.push('/signup')
         } 
