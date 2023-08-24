@@ -53,7 +53,7 @@ export default function SignUp (){
     
 
     return (
-        <>
+        <div className={formstyle.main}>
         <div className={formstyle.container}>
             {/* <p>{option}</p> */}
             <div className={formstyle.tabcontainer}>
@@ -66,6 +66,6 @@ export default function SignUp (){
                 <input type="submit" value={option=='login' ? 'Login' : "Sign Up"}/>
             </form>
         </div>
-        </>
+        </div>
     )
 }

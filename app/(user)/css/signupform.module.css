@@ -1,10 +1,16 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .container {
     padding: 2em;
     display: flex;
     flex-direction: column;
-    width: 30%;
+    /* width: fit-content; */
     gap: 2em;
-    border: solid;
+    /* border: solid; */
 }
 
 .tabcontainer {
