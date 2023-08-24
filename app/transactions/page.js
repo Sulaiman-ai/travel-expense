@@ -121,7 +121,7 @@ export default function Transactions(){
 
 const TransactionForm = ({transactionID, data, handleAddTransaction, handleInputChange, trips, categories}) => 
         <form onSubmit={(e)=>handleAddTransaction(e, transactionID)}>
-            <input name="transaction" placeholder="transaction" value={data?.transaction||''} onChange={handleInputChange}/>
+            <input name="transaction" placeholder="transaction" defaultValue={data?.transaction||''} onChange={handleInputChange}/>
             <input name="amount" placeholder="amount" onChange={handleInputChange}/>
             <input name="currency" placeholder="currency" onChange={handleInputChange}/>
             {/* <input type="datetime-local" /> */}
